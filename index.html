@@ -24,7 +24,7 @@ h1,h2,h3{font-family:var(--head);font-weight:300;line-height:1.16;margin:0;lette
 p{margin:0;}
 a{color:inherit;text-decoration:none;}
 img,svg{display:block;max-width:100%;}
-.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,48px);}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(18px,3.2vw,34px);}
 .eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.26em;
   text-transform:uppercase;color:var(--gold-dk);margin-bottom:20px;}
 .eyebrow.light{color:var(--gold);}
@@ -74,9 +74,10 @@ section{position:relative;}
 .trust .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
 
 /* ── section heading ── */
-.shead{max-width:720px;margin-bottom:14px;}
+.shead{max-width:none;margin-bottom:14px;}
 .shead h2{font-size:clamp(28px,4.2vw,48px);margin-bottom:20px;}
-.center{margin-left:auto;margin-right:auto;text-align:center;}
+.shead .lead{max-width:none;}
+.center{max-width:760px;margin-left:auto;margin-right:auto;text-align:center;}
 
 /* ── shift ── */
 .bg-cream{background:var(--cream);}
@@ -99,12 +100,15 @@ section{position:relative;}
 /* ── services ── */
 .bg-paper{background:var(--paper);}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
-.svc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:40px 34px;
+.svc{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;
   transition:transform .35s,box-shadow .35s,border-color .35s;}
 .svc:hover{transform:translateY(-6px);box-shadow:0 28px 54px -30px rgba(60,48,30,.32);border-color:var(--gold);}
-.svc-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;margin-bottom:24px;
-  background:linear-gradient(150deg,#f1ecdf,#e7dfca);}
-.svc-ic svg{width:26px;height:26px;stroke:var(--gold-dk);}
+.svc-img{position:relative;aspect-ratio:16/10;overflow:hidden;}
+.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease;}
+.svc:hover .svc-img img{transform:scale(1.05);}
+.svc-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(22,15,26,0) 45%,rgba(22,15,26,.42));}
+.svc-body{padding:30px 32px 34px;}
 .svc h3{font-size:20px;margin-bottom:12px;font-weight:400;letter-spacing:.01em;}
 .svc p{font-size:15px;color:var(--muted);line-height:1.65;}
 
@@ -113,8 +117,8 @@ section{position:relative;}
 .bgblock .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .bgblock .veil{position:absolute;inset:0;}
 .bgblock .wrap{position:relative;z-index:2;}
-.bgblock h2{color:#fff;font-size:clamp(28px,4.2vw,48px);max-width:720px;margin-bottom:22px;font-weight:300;}
-.bgblock .lead{color:#e0dacd;max-width:640px;}
+.bgblock h2{color:#fff;font-size:clamp(28px,4.2vw,48px);max-width:none;margin-bottom:22px;font-weight:300;}
+.bgblock .lead{color:#e0dacd;max-width:none;}
 .band-veil{background:linear-gradient(105deg,rgba(16,11,22,.9) 0%,rgba(18,13,24,.72) 44%,rgba(20,14,28,.4) 100%);}
 .ticino-veil{background:linear-gradient(105deg,rgba(16,11,22,.86) 0%,rgba(18,13,24,.6) 48%,rgba(20,14,28,.3) 100%);}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px;}
@@ -313,34 +317,46 @@ footer{background:var(--dark2);color:#a79f90;padding:70px 0 38px;border-top:1px 
     </div>
     <div class="svc-grid">
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 13h4l2 5 4-12 2 7h6"/></svg></div>
-        <h3>Бухгалтерия в реальном времени</h3>
-        <p>Учёт, который обновляется каждый день, а не раз в квартал. MWST, кредиторы и дебиторы, отчётность — всегда актуальны.</p>
+        <div class="svc-img"><img src="assets/svc1.jpg?v=1" alt="Бухгалтерия в реальном времени"></div>
+        <div class="svc-body">
+          <h3>Бухгалтерия в реальном времени</h3>
+          <p>Учёт, который обновляется каждый день, а не раз в квартал. MWST, кредиторы и дебиторы, отчётность — всегда актуальны.</p>
+        </div>
       </div>
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Внешний финансовый директор</h3>
-        <p>Роль Virtual CFO: бюджеты, управленческие отчёты, контроль ликвидности и решения на основе живых цифр.</p>
+        <div class="svc-img"><img src="assets/svc2.jpg?v=1" alt="Внешний финансовый директор"></div>
+        <div class="svc-body">
+          <h3>Внешний финансовый директор</h3>
+          <p>Роль Virtual CFO: бюджеты, управленческие отчёты, контроль ликвидности и решения на основе живых цифр.</p>
+        </div>
       </div>
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
-        <h3>Мультивалютность EUR / CHF</h3>
-        <p>Трансграничный Тичино — это группы и контрагенты в Италии. Учёт в нескольких валютах и юрлицах без потери точности.</p>
+        <div class="svc-img"><img src="assets/svc3.jpg?v=1" alt="Мультивалютность EUR / CHF"></div>
+        <div class="svc-body">
+          <h3>Мультивалютность EUR / CHF</h3>
+          <p>Трансграничный Тичино — это группы и контрагенты в Италии. Учёт в нескольких валютах и юрлицах без потери точности.</p>
+        </div>
       </div>
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></div>
-        <h3>Учёт по филиалам и зарплата</h3>
-        <p>Несколько площадок, расчёт зарплат и социальных взносов, консолидированная картина по всей компании.</p>
+        <div class="svc-img"><img src="assets/svc4.jpg?v=1" alt="Учёт по филиалам и зарплата"></div>
+        <div class="svc-body">
+          <h3>Учёт по филиалам и зарплата</h3>
+          <p>Несколько площадок, расчёт зарплат и социальных взносов, консолидированная картина по всей компании.</p>
+        </div>
       </div>
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M8 14h8M8 17h5"/></svg></div>
-        <h3>Клиентский портал под брендом IBEX</h3>
-        <p>Защищённый доступ к вашим финансам онлайн: документы, отчёты и показатели — в одном месте, в фирменном стиле IBEX CAPITAL.</p>
+        <div class="svc-img"><img src="assets/svc5.jpg?v=1" alt="Клиентский портал под брендом IBEX"></div>
+        <div class="svc-body">
+          <h3>Клиентский портал под брендом IBEX</h3>
+          <p>Защищённый доступ к вашим финансам онлайн: документы, отчёты и показатели — в одном месте, в фирменном стиле IBEX CAPITAL.</p>
+        </div>
       </div>
       <div class="svc reveal">
-        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M9 7h6M9 11h6M9 15h4"/><rect x="5" y="3" width="14" height="18" rx="2"/></svg></div>
-        <h3>Налоги и корпоративный консалтинг</h3>
-        <p>Сильная налоговая и структурная экспертиза IBEX CAPITAL — сопровождение сделок, структур и оптимизации без рисков.</p>
+        <div class="svc-img"><img src="assets/svc6.jpg?v=1" alt="Налоги и корпоративный консалтинг"></div>
+        <div class="svc-body">
+          <h3>Налоги и корпоративный консалтинг</h3>
+          <p>Сильная налоговая и структурная экспертиза IBEX CAPITAL — сопровождение сделок, структур и оптимизации без рисков.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -351,7 +367,7 @@ footer{background:var(--dark2);color:#a79f90;padding:70px 0 38px;border-top:1px 
   <img class="bgimg" src="assets/city.jpg?v=1" alt="Панорама города">
   <div class="veil band-veil"></div>
   <div class="wrap">
-    <div class="reveal" style="max-width:720px;">
+    <div class="reveal">
       <p class="eyebrow light">Почему IBEX CAPITAL</p>
       <h2>Масштаб крупной компании — без собственного бухгалтерского отдела</h2>
       <p class="lead">Своя бухгалтерия в Тичино или Гриджони обходится в CHF 95–105 тыс. за одного специалиста и 200–440 тыс. за команду 2–4 человека. С IBEX CAPITAL вы получаете ту же работу — и финансовую функцию уровня крупной компании — заметно дешевле и в реальном времени.</p>
@@ -450,7 +466,7 @@ footer{background:var(--dark2);color:#a79f90;padding:70px 0 38px;border-top:1px 
   <img class="bgimg" src="assets/ticino.jpg?v=1" alt="Южная Швейцария — Лугано, Тичино">
   <div class="veil ticino-veil"></div>
   <div class="wrap">
-    <div class="reveal" style="max-width:720px;">
+    <div class="reveal">
       <p class="eyebrow light">Южная Швейцария — наш дом</p>
       <h2>Партнёр, который рядом и говорит на вашем языке</h2>
       <p class="lead">IBEX CAPITAL работает из Кьяссо, на границе с Италией, и обслуживает компании Тичино и Гриджони. Мы знаем экономику региона изнутри — от трансграничных групп у итальянской границы до операционного бизнеса туризма, торговли и строительства.</p>
