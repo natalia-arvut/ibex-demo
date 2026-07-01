@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBEX CAPITAL — Финансы вашей компании в реальном времени · Тичино и Гриджони</title>
+<meta name="description" content="IBEX CAPITAL ведёт бухгалтерию вашей компании в реальном времени и берёт на себя роль внешнего финансового директора. Chiasso · Тичино и Гриджони.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --dark:#1a1423; --dark2:#120d18; --panel:#241a30;
+  --gold:#c3b28d; --gold-lt:#dccbaa; --gold-dk:#a8946b;
+  --cream:#f5f4f0; --paper:#faf9f6; --white:#ffffff;
+  --ink:#211b16; --muted:#726a5f; --line:#e7e2d7; --line-dk:#39304a;
+  --arvut:#009b9f;
+  --sans:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --head:'Montserrat',Georgia,serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--white);
+  font-size:17px;line-height:1.7;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+h1,h2,h3{font-family:var(--head);font-weight:300;line-height:1.16;margin:0;letter-spacing:.005em;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,48px);}
+.eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold-dk);margin-bottom:20px;}
+.eyebrow.light{color:var(--gold);}
+.lead{font-size:clamp(16.5px,2vw,19px);color:var(--muted);line-height:1.75;font-weight:400;}
+section{position:relative;}
+.sec{padding:clamp(66px,9vw,124px) 0;}
+
+/* buttons — pill, gold */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;
+  font-size:13.5px;letter-spacing:.06em;text-transform:uppercase;padding:15px 34px;border-radius:999px;
+  transition:transform .25s,background .25s,color .25s,border-color .25s;cursor:pointer;
+  border:1px solid transparent;white-space:nowrap;}
+.btn-gold{background:var(--gold);color:#1c150a;border-color:var(--gold);}
+.btn-gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:#1c150a;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--gold);border-color:rgba(195,178,141,.55);}
+.btn-ghost:hover{background:rgba(195,178,141,.12);border-color:var(--gold);color:var(--gold-lt);}
+.btn-out{background:transparent;color:var(--ink);border-color:rgba(33,27,22,.28);}
+.btn-out:hover{background:var(--ink);color:var(--gold-lt);border-color:var(--ink);transform:translateY(-2px);}
+
+/* ── nav (dark) ── */
+.nav{background:var(--dark);position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line-dk);}
+.nav-in{height:90px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.brandlogo{display:flex;align-items:center;gap:14px;}
+.brandlogo img{height:56px;width:auto;}
+.navlinks{display:flex;align-items:center;gap:clamp(16px,2.3vw,34px);}
+.navlinks a{color:#d9d2c4;font-weight:400;font-size:14px;letter-spacing:.04em;transition:color .2s;}
+.navlinks a:hover{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-phone{color:var(--gold);font-size:14px;font-weight:500;letter-spacing:.03em;white-space:nowrap;}
+.cta-nav{padding:12px 26px;font-size:12.5px;}
+
+/* ── hero ── */
+.hero{position:relative;min-height:calc(100svh - 90px);display:flex;align-items:center;
+  overflow:hidden;background:var(--dark);padding:12vh 0 10vh;text-align:center;}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;}
+.hero .veil{position:absolute;inset:0;
+  background:radial-gradient(120% 100% at 50% 40%,rgba(18,13,24,.5) 0%,rgba(18,13,24,.74) 55%,rgba(12,9,16,.9) 100%);}
+.hero .wrap{position:relative;z-index:2;width:100%;}
+.hero-in{max-width:800px;margin:0 auto;color:#fff;}
+.hero h1{font-size:clamp(34px,5.8vw,64px);color:#fff;margin-bottom:26px;font-weight:300;letter-spacing:.01em;}
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero .lead{color:#e6e0d3;max-width:620px;margin:0 auto 40px;font-size:clamp(16px,1.9vw,19px);}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;justify-content:center;}
+.trust{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;
+  padding-top:30px;border-top:1px solid rgba(195,178,141,.24);max-width:640px;margin:0 auto;}
+.trust span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c9c1b2;font-weight:500;}
+.trust .dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+/* ── section heading ── */
+.shead{max-width:720px;margin-bottom:14px;}
+.shead h2{font-size:clamp(28px,4.2vw,48px);margin-bottom:20px;}
+.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+/* ── shift ── */
+.bg-cream{background:var(--cream);}
+.shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:56px;}
+.shift-card{padding:42px 38px;border-radius:6px;border:1px solid var(--line);background:var(--white);}
+.shift-card.now{background:var(--paper);}
+.shift-card.ibx{background:linear-gradient(165deg,#241a30,#160f1e);border:1px solid var(--line-dk);color:#fff;
+  box-shadow:0 34px 66px -34px rgba(15,9,22,.7);}
+.shift-card h3{font-size:12px;font-family:var(--sans);font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;margin-bottom:26px;}
+.shift-card.now h3{color:var(--muted);}
+.shift-card.ibx h3{color:var(--gold);}
+.shift-list{list-style:none;padding:0;margin:0;}
+.shift-list li{display:flex;gap:14px;padding:13px 0;font-size:15.5px;line-height:1.55;align-items:flex-start;font-weight:400;}
+.shift-list li+li{border-top:1px solid rgba(0,0,0,.07);}
+.shift-card.ibx .shift-list li+li{border-top:1px solid rgba(195,178,141,.16);}
+.shift-card.ibx li{color:#e4ddcf;}
+.ic{flex:none;width:20px;height:20px;margin-top:2px;}
+
+/* ── services ── */
+.bg-paper{background:var(--paper);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;}
+.svc{background:#fff;border:1px solid var(--line);border-radius:6px;padding:40px 34px;
+  transition:transform .35s,box-shadow .35s,border-color .35s;}
+.svc:hover{transform:translateY(-6px);box-shadow:0 28px 54px -30px rgba(60,48,30,.32);border-color:var(--gold);}
+.svc-ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;margin-bottom:24px;
+  background:linear-gradient(150deg,#f1ecdf,#e7dfca);}
+.svc-ic svg{width:26px;height:26px;stroke:var(--gold-dk);}
+.svc h3{font-size:20px;margin-bottom:12px;font-weight:400;letter-spacing:.01em;}
+.svc p{font-size:15px;color:var(--muted);line-height:1.65;}
+
+/* ── dark photo band ── */
+.bgblock{position:relative;color:#fff;overflow:hidden;background:var(--dark);}
+.bgblock .bgimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.bgblock .veil{position:absolute;inset:0;}
+.bgblock .wrap{position:relative;z-index:2;}
+.bgblock h2{color:#fff;font-size:clamp(28px,4.2vw,48px);max-width:720px;margin-bottom:22px;font-weight:300;}
+.bgblock .lead{color:#e0dacd;max-width:640px;}
+.band-veil{background:linear-gradient(105deg,rgba(16,11,22,.9) 0%,rgba(18,13,24,.72) 44%,rgba(20,14,28,.4) 100%);}
+.ticino-veil{background:linear-gradient(105deg,rgba(16,11,22,.86) 0%,rgba(18,13,24,.6) 48%,rgba(20,14,28,.3) 100%);}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:60px;}
+.stat{padding:30px 26px;border-radius:6px;background:rgba(195,178,141,.06);
+  border:1px solid rgba(195,178,141,.2);}
+.stat .n{font-family:var(--head);font-weight:300;font-size:clamp(30px,3.6vw,44px);color:#fff;
+  line-height:1;margin-bottom:12px;}
+.stat .n small{font-size:.5em;color:var(--gold);font-weight:400;}
+.stat .t{font-size:13px;color:#c6bfb1;line-height:1.5;}
+
+/* ── pricing ── */
+.price-anchor{max-width:720px;margin:0 auto 52px;text-align:center;font-size:15px;color:var(--muted);
+  background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 30px;}
+.price-anchor b{color:var(--ink);font-weight:600;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.tier{background:#fff;border:1px solid var(--line);border-radius:8px;padding:42px 34px;display:flex;
+  flex-direction:column;transition:transform .35s,box-shadow .35s;}
+.tier:hover{transform:translateY(-6px);box-shadow:0 32px 60px -32px rgba(60,48,30,.34);}
+.tier.feat{background:linear-gradient(168deg,#241a30,#160f1e);color:#fff;border:1px solid var(--line-dk);
+  box-shadow:0 36px 70px -32px rgba(15,9,22,.7);}
+.tier .tag{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-dk);margin-bottom:18px;}
+.tier.feat .tag{color:var(--gold);}
+.tier .who{font-size:13.5px;color:var(--muted);margin-bottom:20px;}
+.tier.feat .who{color:#c6bfb1;}
+.tier .price{font-family:var(--head);font-weight:300;font-size:38px;line-height:1;margin-bottom:6px;}
+.tier .price small{font-size:15px;color:var(--muted);font-weight:400;}
+.tier.feat .price small{color:#c6bfb1;}
+.tier .per{font-size:12.5px;color:var(--muted);margin-bottom:28px;letter-spacing:.02em;}
+.tier.feat .per{color:#c6bfb1;}
+.tier ul{list-style:none;padding:0;margin:0 0 32px;flex:1;}
+.tier li{display:flex;gap:12px;font-size:14.5px;padding:10px 0;line-height:1.5;align-items:flex-start;
+  border-top:1px solid var(--line);font-weight:400;}
+.tier.feat li{border-top:1px solid rgba(195,178,141,.16);color:#e4ddcf;}
+.tier li:first-child{border-top:none;}
+.tier .chk{flex:none;width:17px;height:17px;margin-top:3px;color:var(--gold-dk);}
+.tier.feat .chk{color:var(--gold);}
+.ribbon{display:inline-block;align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;background:var(--gold);color:#1c150a;padding:6px 14px;border-radius:999px;margin-bottom:20px;}
+
+/* ── steps ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:56px;}
+.step{position:relative;padding-top:10px;}
+.step .num{font-family:var(--head);font-weight:300;font-size:56px;color:var(--gold);line-height:1;margin-bottom:18px;opacity:.9;}
+.step h3{font-size:19px;margin-bottom:12px;font-weight:400;}
+.step p{font-size:15px;color:var(--muted);line-height:1.65;}
+
+/* ── region marks ── */
+.pmarks{display:flex;gap:48px;margin-top:38px;flex-wrap:wrap;}
+.pmarks div{font-family:var(--head);font-weight:300;font-size:28px;color:#fff;}
+.pmarks span{display:block;font-family:var(--sans);font-size:11px;font-weight:500;color:var(--gold);
+  letter-spacing:.14em;text-transform:uppercase;margin-top:8px;}
+
+/* ── contact ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:50px;}
+.contact-info h3{font-size:26px;margin-bottom:18px;font-weight:400;}
+.contact-info .lead{margin-bottom:30px;}
+.cline{display:flex;gap:14px;align-items:center;padding:12px 0;font-size:15.5px;}
+.cline svg{width:20px;height:20px;stroke:var(--gold-dk);flex:none;}
+.cline a{font-weight:500;}
+form{background:#fff;border:1px solid var(--line);border-radius:8px;padding:38px 34px;
+  box-shadow:0 26px 54px -36px rgba(60,48,30,.3);}
+.field{margin-bottom:20px;}
+label{display:block;font-size:12px;font-weight:600;color:#514a40;margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase;}
+input,textarea{width:100%;font-family:var(--sans);font-size:15px;padding:14px 16px;border:1px solid var(--line);
+  border-radius:5px;background:var(--paper);color:var(--ink);transition:border-color .2s,background .2s;}
+input:focus,textarea:focus{outline:none;border-color:var(--gold);background:#fff;}
+textarea{resize:vertical;min-height:108px;}
+form .btn{width:100%;justify-content:center;}
+.formnote{font-size:12px;color:var(--muted);margin-top:16px;text-align:center;}
+
+/* ── footer ── */
+footer{background:var(--dark2);color:#a79f90;padding:70px 0 38px;border-top:1px solid var(--line-dk);}
+.foot-top{display:flex;justify-content:space-between;gap:44px;flex-wrap:wrap;
+  padding-bottom:38px;border-bottom:1px solid rgba(195,178,141,.14);}
+.foot-brand .wm{font-family:var(--head);font-weight:300;font-size:24px;color:var(--gold);letter-spacing:.16em;}
+.foot-brand p{font-size:14px;color:#8f8879;margin-top:14px;max-width:340px;line-height:1.65;}
+.foot-links{display:flex;gap:64px;flex-wrap:wrap;}
+.foot-col h4{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-dk);margin:0 0 16px;font-weight:600;}
+.foot-col a{display:block;font-size:14px;color:#b3ab9c;padding:6px 0;transition:color .2s;}
+.foot-col a:hover{color:var(--gold);}
+.foot-offices .foff{padding:8px 0;}
+.foot-offices .foff b{display:block;color:#d6cfc0;font-size:14px;font-weight:500;}
+.foot-offices .foff span{display:block;color:#8f8879;font-size:12.5px;margin-top:2px;}
+.foot-bot{display:flex;justify-content:space-between;gap:18px 30px;flex-wrap:wrap;align-items:center;padding-top:28px;}
+.foot-bot .copy{font-size:12.5px;color:#847d6f;}
+.foot-credit{display:flex;align-items:center;gap:16px;}
+.foot-credit .lbl{font-size:13px;color:#b3ab9c;}
+.foot-credit .arvut-wm{font-family:var(--sans);font-weight:700;font-size:24px;color:var(--arvut);
+  letter-spacing:.12em;}
+
+/* ── reveal ── */
+.reveal{opacity:0;transform:translateY(26px);
+  transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity,transform;}
+.reveal.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.reveal{opacity:1;transform:none;}}
+
+/* ── responsive ── */
+@media(max-width:980px){
+  .svc-grid,.price-grid,.steps,.stats{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:38px;}
+  .stats{gap:16px;}
+}
+@media(max-width:760px){
+  .navlinks,.nav-phone{display:none;}
+  .shift-grid,.svc-grid,.price-grid,.steps,.stats{grid-template-columns:1fr;}
+  .hero{padding:9vh 0 10vh;min-height:auto;}
+  .pmarks{gap:30px;}
+  .tier.feat{order:-1;}
+  .brandlogo img{height:48px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="top">
+  <div class="wrap nav-in">
+    <a href="#top" class="brandlogo"><img src="assets/ibex-logo.png" alt="IBEX CAPITAL"></a>
+    <nav class="navlinks">
+      <a href="#servizi">Услуги</a>
+      <a href="#perche">Почему IBEX</a>
+      <a href="#tariffe">Тарифы</a>
+      <a href="#come">Как работаем</a>
+      <a href="#regione">Регион</a>
+    </nav>
+    <div class="nav-right">
+      <span class="nav-phone">+41 91 683 63 43</span>
+      <a href="#contatto" class="btn btn-gold cta-nav">Получить расчёт</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="bg" src="assets/hero.jpg?v=1" alt="IBEX CAPITAL — Chiasso">
+  <div class="veil"></div>
+  <div class="wrap">
+    <div class="hero-in">
+      <p class="eyebrow light">Для средних и крупных компаний · Тичино и Гриджони</p>
+      <h1>Финансы вашей компании —<br><em>в реальном времени</em></h1>
+      <p class="lead">IBEX CAPITAL ведёт вашу бухгалтерию в реальном времени и берёт на себя роль внешнего финансового директора. Полная картина финансов — сегодня, а не раз в квартал.</p>
+      <div class="hero-cta">
+        <a href="#contatto" class="btn btn-gold">Получить расчёт</a>
+        <a href="#tariffe" class="btn btn-ghost">Смотреть тарифы</a>
+      </div>
+      <div class="trust">
+        <span>Chiasso · Ticino</span><i class="dot"></i>
+        <span>Italiano · Deutsch · English</span><i class="dot"></i>
+        <span>Real-Time Finance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHIFT -->
+<section class="sec bg-cream" id="cambiamento">
+  <div class="wrap">
+    <div class="shead reveal">
+      <p class="eyebrow">Сдвиг</p>
+      <h2>Бухгалтерия, которая не отстаёт от вашего бизнеса</h2>
+      <p class="lead">Раньше средняя или крупная компания держала собственный бухгалтерский отдел: иначе картина финансов приходила с опозданием. Сегодня этот барьер снят.</p>
+    </div>
+    <div class="shift-grid">
+      <div class="shift-card now reveal">
+        <h3>Сегодня — свой штат</h3>
+        <ul class="shift-list">
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#a29a8c" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Картина финансов — раз в квартал или раз в год</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#a29a8c" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Ручной ввод и сверки занимают штатных специалистов</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#a29a8c" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Отдел из 2–4 человек — CHF 200–440 тыс. в год</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#a29a8c" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>Найм, отпуска, замены, обучение — на вас</li>
+        </ul>
+      </div>
+      <div class="shift-card ibx reveal">
+        <h3>С IBEX CAPITAL — реальное время</h3>
+        <ul class="shift-list">
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#c3b28d" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Полная картина финансов — каждый день, в любой момент</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#c3b28d" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Рутина автоматизирована — вы получаете анализ, а не проводки</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#c3b28d" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Дешевле собственного отдела — без найма и замен</li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#c3b28d" stroke-width="1.8"><path d="M20 6 9 17l-5-5"/></svg>Роль внешнего финансового директора в одном пакете</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec bg-paper" id="servizi">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <p class="eyebrow">Услуги</p>
+      <h2>Финансовая функция корпоративного уровня</h2>
+      <p class="lead">Полное ведение учёта в реальном времени и стратегическое сопровождение — под брендом IBEX CAPITAL.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M3 13h4l2 5 4-12 2 7h6"/></svg></div>
+        <h3>Бухгалтерия в реальном времени</h3>
+        <p>Учёт, который обновляется каждый день, а не раз в квартал. MWST, кредиторы и дебиторы, отчётность — всегда актуальны.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Внешний финансовый директор</h3>
+        <p>Роль Virtual CFO: бюджеты, управленческие отчёты, контроль ликвидности и решения на основе живых цифр.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
+        <h3>Мультивалютность EUR / CHF</h3>
+        <p>Трансграничный Тичино — это группы и контрагенты в Италии. Учёт в нескольких валютах и юрлицах без потери точности.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></div>
+        <h3>Учёт по филиалам и зарплата</h3>
+        <p>Несколько площадок, расчёт зарплат и социальных взносов, консолидированная картина по всей компании.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M8 14h8M8 17h5"/></svg></div>
+        <h3>Клиентский портал под брендом IBEX</h3>
+        <p>Защищённый доступ к вашим финансам онлайн: документы, отчёты и показатели — в одном месте, в фирменном стиле IBEX CAPITAL.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M9 7h6M9 11h6M9 15h4"/><rect x="5" y="3" width="14" height="18" rx="2"/></svg></div>
+        <h3>Налоги и корпоративный консалтинг</h3>
+        <p>Сильная налоговая и структурная экспертиза IBEX CAPITAL — сопровождение сделок, структур и оптимизации без рисков.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGE BAND -->
+<section class="sec bgblock" id="perche">
+  <img class="bgimg" src="assets/city.jpg?v=1" alt="Панорама города">
+  <div class="veil band-veil"></div>
+  <div class="wrap">
+    <div class="reveal" style="max-width:720px;">
+      <p class="eyebrow light">Почему IBEX CAPITAL</p>
+      <h2>Масштаб крупной компании — без собственного бухгалтерского отдела</h2>
+      <p class="lead">Своя бухгалтерия в Тичино или Гриджони обходится в CHF 95–105 тыс. за одного специалиста и 200–440 тыс. за команду 2–4 человека. С IBEX CAPITAL вы получаете ту же работу — и финансовую функцию уровня крупной компании — заметно дешевле и в реальном времени.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><div class="n">≈70<small>%</small></div><div class="t">экономия против собственного бухгалтера в год</div></div>
+      <div class="stat reveal"><div class="n">24<small>/7</small></div><div class="t">картина финансов доступна в любой момент</div></div>
+      <div class="stat reveal"><div class="n">EUR<small> / CHF</small></div><div class="t">мультивалютный учёт для трансграничных компаний</div></div>
+      <div class="stat reveal"><div class="n">2</div><div class="t">кантона — Тичино и Гриджони — один партнёр рядом</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec bg-cream" id="tariffe">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <p class="eyebrow">Тарифы</p>
+      <h2>Прозрачные пакеты по размеру компании</h2>
+    </div>
+    <p class="price-anchor reveal">Ориентир для сравнения: собственный бухгалтерский отдел в Тичино/Гриджони — <b>CHF 95–105 тыс.</b> за одного специалиста и <b>CHF 200–440 тыс.</b> за команду 2–4 человека в год.</p>
+    <div class="price-grid">
+      <div class="tier reveal">
+        <span class="tag">Real-Time Books</span>
+        <p class="who">Средняя компания · 10–49 сотрудников</p>
+        <div class="price">от 18k <small>CHF</small></div>
+        <p class="per">в год</p>
+        <ul>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Бухгалтерия в реальном времени</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>MWST, кредиторы и дебиторы</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Портал под брендом IBEX CAPITAL</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Регулярная отчётность</li>
+        </ul>
+        <a href="#contatto" class="btn btn-out">Обсудить пакет</a>
+      </div>
+      <div class="tier feat reveal">
+        <span class="ribbon">Чаще всего выбирают</span>
+        <span class="tag">Finance Partner</span>
+        <p class="who">Компания · 50–249 сотрудников</p>
+        <div class="price">от 36k <small>CHF</small></div>
+        <p class="per">в год</p>
+        <ul>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Всё из Real-Time Books</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Ежемесячный управленческий отчёт</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Мультивалютность EUR / CHF</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Квартальный финансовый анализ</li>
+        </ul>
+        <a href="#contatto" class="btn btn-gold">Обсудить пакет</a>
+      </div>
+      <div class="tier reveal">
+        <span class="tag">Virtual CFO</span>
+        <p class="who">Крупная компания · группа · холдинг</p>
+        <div class="price">от 60k <small>CHF</small></div>
+        <p class="per">в год</p>
+        <ul>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Всё из Finance Partner</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Консолидация и бюджетирование</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Внешний финансовый директор</li>
+          <li><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Налоговое и структурное сопровождение</li>
+        </ul>
+        <a href="#contatto" class="btn btn-out">Обсудить пакет</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="sec bg-paper" id="come">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <p class="eyebrow">Как работаем</p>
+      <h2>Переход без простоя — за три шага</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>Разговор и анализ</h3>
+        <p>Изучаем вашу текущую бухгалтерию, структуру и цели. Показываем, где реальное время даёт выигрыш, и считаем экономию.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3>Перенос учёта</h3>
+        <p>Переводим бухгалтерию на платформу реального времени под брендом IBEX CAPITAL. Ваш бизнес не останавливается ни на день.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3>Реальное время и CFO</h3>
+        <p>Вы видите финансы каждый день и получаете стратегическое сопровождение внешнего финансового директора.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGION BLOCK -->
+<section class="sec bgblock" id="regione">
+  <img class="bgimg" src="assets/ticino.jpg?v=1" alt="Южная Швейцария — Лугано, Тичино">
+  <div class="veil ticino-veil"></div>
+  <div class="wrap">
+    <div class="reveal" style="max-width:720px;">
+      <p class="eyebrow light">Южная Швейцария — наш дом</p>
+      <h2>Партнёр, который рядом и говорит на вашем языке</h2>
+      <p class="lead">IBEX CAPITAL работает из Кьяссо, на границе с Италией, и обслуживает компании Тичино и Гриджони. Мы знаем экономику региона изнутри — от трансграничных групп у итальянской границы до операционного бизнеса туризма, торговли и строительства.</p>
+    </div>
+    <div class="pmarks reveal">
+      <div>IT · DE · EN<span>Три языка</span></div>
+      <div>Chiasso<span>на границе с Италией</span></div>
+      <div>EUR / CHF<span>трансграничный учёт</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec bg-cream" id="contatto">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <p class="eyebrow">Контакт</p>
+      <h2>Узнайте, сколько вы сэкономите</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Поговорим о ваших финансах</h3>
+        <p class="lead">Оставьте заявку — мы изучим вашу текущую бухгалтерию, посчитаем экономию против собственного отдела и предложим подходящий пакет. Без обязательств.</p>
+        <div class="cline"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:info@ibex.capital">info@ibex.capital</a></div>
+        <div class="cline"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.5a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg><a href="tel:+41916836343">+41 91 683 63 43</a></div>
+        <div class="cline"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-5.2-7-11a7 7 0 0114 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Via Serafino Balestra 6 · CH-6830 Chiasso</div>
+        <div class="cline"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>Italiano · Deutsch · English</div>
+      </div>
+      <form class="reveal" onsubmit="event.preventDefault();var b=this.querySelector('button');b.textContent='Спасибо! Мы свяжемся с вами';b.style.background='var(--arvut)';b.style.borderColor='var(--arvut)';b.style.color='#fff';">
+        <div class="field"><label>Компания</label><input type="text" placeholder="Название вашей компании" required></div>
+        <div class="field"><label>Контактное лицо</label><input type="text" placeholder="Имя и фамилия" required></div>
+        <div class="field"><label>E-mail</label><input type="email" placeholder="vy@company.ch" required></div>
+        <div class="field"><label>Сообщение</label><textarea placeholder="Сколько у вас сотрудников и как сейчас ведётся бухгалтерия?"></textarea></div>
+        <button type="submit" class="btn btn-gold">Получить расчёт</button>
+        <p class="formnote">Демонстрационная форма. Реальные заявки — на info@ibex.capital</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="wm">IBEX&nbsp;CAPITAL</div>
+        <p>Бухгалтерия в реальном времени и роль внешнего финансового директора для компаний Тичино и Гриджони.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col foot-offices">
+          <h4>Офис</h4>
+          <div class="foff"><b>Chiasso</b><span>Via Serafino Balestra 6 · CH-6830 Chiasso</span></div>
+          <div class="foff"><b>Телефон</b><span>+41 91 683 63 43</span></div>
+        </div>
+        <div class="foot-col">
+          <h4>Навигация</h4>
+          <a href="#servizi">Услуги</a>
+          <a href="#tariffe">Тарифы</a>
+          <a href="#come">Как работаем</a>
+          <a href="#contatto">Контакт</a>
+        </div>
+        <div class="foot-col">
+          <h4>Контакт</h4>
+          <a href="mailto:info@ibex.capital">info@ibex.capital</a>
+          <a href="#contatto">Получить расчёт</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span class="copy">© 2026 IBEX CAPITAL Ltd · Chiasso · Тичино и Гриджони</span>
+      <span class="foot-credit"><span class="lbl">Технология реального времени</span><span class="arvut-wm">ARVUT</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;
+      var el=e.target;var sibs=[].slice.call(el.parentElement.children).filter(function(c){return c.classList.contains('reveal');});
+      var idx=Math.max(0,sibs.indexOf(el));el.style.transitionDelay=(idx*0.09)+'s';el.classList.add('in');
+      io.unobserve(el);setTimeout(function(){el.style.transitionDelay='';},900+idx*90);});},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){
+      if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');});},2400);});
+  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+})();
+</script>
+</body>
+</html>
